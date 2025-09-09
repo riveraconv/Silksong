@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Silksong.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <!-- Imagen pendiente de cambios -->
+            <Image  
+                Source="dotnet_bot.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="dot net bot in a race car number eight" />
+   
+            <!-- Titulo de la app -->
+            <Label
+                Text="Welcome to Silksong"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" 
+                HorizontalOptions="Center"/>
+            
+            <!-- Descripcion -->
+            <Label
+                Text="Convert YouTube videos to audio fast and easy"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2"
+                HorizontalOptions="Center"/>
+
+            <Button
+                x:Name="StartButton"
+                Text="Start to convert!" 
+                Clicked="OnStartClicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

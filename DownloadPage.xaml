@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Silksong.DownloadPage"
+             Title="Download Audio"
+             BackgroundColor="White">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            
+            <Label 
+                Text="Copy your YouTube URL here"
+                FontSize="20"
+                HorizontalOptions="Center" 
+                TextColor="Black"/>
+
+            <Entry x:Name="UrlEntry"
+                   Placeholder="http://youtube.com/..."
+                   Keyboard="Url"
+                   TextColor="Cyan"/>
+                    
+
+            <Button Text="Download Audio"
+                    Clicked="OnDownloadClicked"
+                    HorizontalOptions="Fill"/>
+
+            <Label x:Name="StatusLabel"
+                   Text=""
+                   FontSize="14"
+                   TextColor="Gray"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

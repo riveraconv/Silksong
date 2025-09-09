@@ -1,0 +1,47 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build
+bin/
+obj/
+*.log
+
+# MAUI / multiplataforma
+**/bin/
+**/obj/
+**/*.pdb
+**/*.db
+*.apk
+*.aab
+*.ap_ 
+*.xamarin*
+*.vsix
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+# Rider
+.idea/
+
+# Mac / MacCatalyst
+*.xcworkspace
+*.xcodeproj
+*.xcuserdata
+*.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Otros
+*.db
+*.sqlite
+*.env
+*.local
