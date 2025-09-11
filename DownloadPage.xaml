@@ -19,7 +19,6 @@
                    Keyboard="Url"
                    TextColor="Cyan"/>
                     
-
             <Button Text="Download Audio"
                     Clicked="OnDownloadClicked"
                     HorizontalOptions="Fill"/>
@@ -28,7 +27,21 @@
                    Text=""
                    FontSize="14"
                    TextColor="Gray"/>
+            
+            <ProgressBar x:Name="DownloadProgressBar" 
+                         Progress="0"
+                         HeightRequest="30"
+                         Margin="300,250,300,0"
+                         ScaleY="2"
+                         BackgroundColor="DarkGray"
+                         ProgressColor="Green"/>
 
+            <Label x:Name="ProgressLabel" 
+                   Text="0%"
+                   FontSize="16"
+                   TextColor="Black"
+                   HorizontalOptions="Center"/>
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
