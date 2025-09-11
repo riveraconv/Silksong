@@ -10,29 +10,34 @@
 
             <!-- Imagen pendiente de cambios -->
             <Image  
-                Source="dotnet_bot.png"
+                Source="portada_aplicacion.png"
                 HeightRequest="185"
                 Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a race car number eight" />
+                Margin="0,80,0,0"/>
    
             <!-- Titulo de la app -->
             <Label
                 Text="Welcome to Silksong"
                 Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" 
-                HorizontalOptions="Center"/>
+                HorizontalOptions="Center"
+                Margin="0,0,0,0"/>
             
             <!-- Descripcion -->
             <Label
-                Text="Convert YouTube videos to audio fast and easy"
+                Text="Download your songs from videos fast and easy!"
                 Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                HorizontalOptions="Center"/>
+                HorizontalOptions="Center"
+                Margin="0,0,0,0"/>
 
             <Button
                 x:Name="StartButton"
-                Text="Start to convert!" 
+                Text="GO TO DOWNLOAD!"
+                FontSize="13"
+                TextColor="White"
+                WidthRequest="150"
                 Clicked="OnStartClicked"
+                BackgroundColor="Red"
+                Margin="0,50,0,0"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
