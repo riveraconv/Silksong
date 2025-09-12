@@ -1,26 +1,31 @@
-﻿
-using System;
-using System.IO;
-using System.Net.Http;
-using System.Threading.Tasks;
-using YoutubeExplode;
+﻿using YoutubeExplode;
 using YoutubeExplode.Videos;
 using YoutubeExplode.Videos.Streams;
 
 namespace Silksong.Services
 {
+
     public static class YouTubeDownloader
     {
-        private static YoutubeClient CreateYoutubeClient()
+        private static readonly string[] UserAgents =
+        [
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:120.0) Gecko/20100101 Firefox/120.0",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15"
+        ];
+
+        private static YoutubeClient CreateYoutubeClient() // To evade Youtube rejections, randomize a user-agent per request
         {
+            var random = new Random();
+            string userAgent = UserAgents[random.Next(UserAgents.Length)];
+
             var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("User-Agent",
-                                                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-                                                "AppleWebKit/537.36 (KHTML, like Gecko) " +
-                                                "Chrome/120.0.0.0 Safari/537.36");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
 
             return new YoutubeClient(httpClient);
         }
+
         public static async Task <string> DownloadAudioAsync(string videoId, IProgress<double>? progressHandler = null)
         {
             var youtube = CreateYoutubeClient(); //new object from YoutubeExplode class library
@@ -36,13 +41,37 @@ namespace Silksong.Services
                 var audioStreamInfo = streamManifest.GetAudioOnlyStreams()
                                                     .GetWithHighestBitrate()
                                                     ?? throw new InvalidOperationException("No audio stream available.");
-                
-                //standar download path route
-                string downloadsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-                //creates the filename
+
+#if __ANDROID__
+                string musicBase = Android.OS.Environment
+                     .GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryMusic)?
+                     .AbsolutePath 
+                     ?? throw new InvalidOperationException("Couldn't find Android Music Directory.");
+#else
+                string musicBase = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+#endif
+                string musicFolder = Path.Combine(musicBase, "SilksongDownloads");
+
+                //creates the folder if doesn't exists yet
+                if (!Directory.Exists(musicFolder))
+                    Directory.CreateDirectory(musicFolder);
+                
+                //creates the filename, if exist, tells it to the user
                 string safeTitle = string.Concat(video.Title.Split(Path.GetInvalidFileNameChars()));
-                string filePath = Path.Combine(downloadsPath, safeTitle + ".m4a");
+                string filePath = Path.Combine(musicFolder, safeTitle + ".m4a");
+
+                long estimatedSize = audioStreamInfo.Size.Bytes;
+
+                if (File.Exists(filePath))
+                {
+                    var existingFileInfo = new FileInfo(filePath);
+                    if (Math.Abs(existingFileInfo.Length - estimatedSize) < 1024)
+                    {
+                        throw new InvalidOperationException("You already have this audio file.");
+                    }
+                }
+
 
                 //downloads the stream and returns the filepath to the user
 
