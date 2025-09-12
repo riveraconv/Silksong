@@ -32,12 +32,13 @@
             <Button
                 x:Name="StartButton"
                 Text="GO TO DOWNLOAD!"
-                FontSize="13"
+                FontSize="14"
                 TextColor="White"
                 WidthRequest="150"
                 Clicked="OnStartClicked"
                 BackgroundColor="Red"
                 Margin="0,50,0,0"
+                Padding="0,0,0,0"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
