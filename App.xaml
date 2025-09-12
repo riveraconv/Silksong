@@ -5,6 +5,19 @@
              x:Class="Silksong.App">
     <Application.Resources>
         <ResourceDictionary>
+        <!-- Colores del tema -->
+        <Color x:Key="AppBackgroundLight">#F5F5F5</Color>
+        <Color x:Key="AppBackgroundDark">#1E1E1E</Color>
+        <Color x:Key="AppPrimary">#FF5722</Color>
+        <Color x:Key="AppAccent">#FFC107</Color>
+
+        <!-- Estilos que se adaptan -->
+        <Style TargetType="ContentPage">
+            <Setter Property="BackgroundColor" 
+                Value="{AppThemeBinding Light={StaticResource AppBackgroundLight},
+                                        Dark={StaticResource AppBackgroundDark}}" />
+        </Style>
+        
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
