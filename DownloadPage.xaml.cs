@@ -10,15 +10,15 @@ public partial class DownloadPage : ContentPage
 		InitializeComponent();
 	}
 
-	private async void OnDownloadClicked(object sender, EventArgs e)
-	{
-		string? url = UrlEntry.Text?.Trim();
+    private async void OnDownloadClicked(object sender, EventArgs e)
+    {
+        string? url = UrlEntry.Text?.Trim();
 
-        //1.Validation
-		if (!IsValidYoutubeUrl(url))
-		{
+        //1.URL Validation 
+        if (!IsValidYoutubeUrl(url))
+        {
             await DisplayAlert("Error", "Please, enter a YOUTUBE valid url!", "OK");
-			return;
+            return;
         }
 
         try
@@ -34,8 +34,8 @@ public partial class DownloadPage : ContentPage
             var info = await Services.YouTubeDownloader.GetVideoInfoAsync(videoId);
 
             //3.Ask to the user for download
-            bool confirm = await DisplayAlert("Video Info",
-                                              $"Title: {info.Title}\n Duration: {info.Duration:mm\\:ss}\n Estimated Size: {info.EstimatedSizeMB:F2} MB\n\n, Do you want to download it?",
+            bool confirm = await DisplayAlert("VIDEO INFO",
+                                              $"Title: {info.Title}\nDuration: {info.Duration:mm\\:ss}\nEstimated Size: {info.EstimatedSizeMB:F2} MB\n\nDo you want to download it?",
                                               "Yes", "No"
                                               );
             if (!confirm)
@@ -58,19 +58,35 @@ public partial class DownloadPage : ContentPage
                 });
             });
 
-            //calling download path
-            string filePath = await YouTubeDownloader.DownloadAudioAsync(videoId, progressHandler);
+            //calling download path, using Task.Run to liberate UI thread and don't getting NetworkOnMainException
+            try
+            {
+                string filePath = await Task.Run(() =>
+                    YouTubeDownloader.DownloadAudioAsync(videoId, progressHandler)
+                );
 
-
-            await DisplayAlert("Done", $"Audio downloaded in:\n{filePath}", "OK");
-            StatusLabel.Text = "✅ Download complete";
+                StatusLabel.Text = $"✅ Download complete: {filePath}";
+                await DisplayAlert("Done", $"Audio downloaded in:\n{filePath}", "OK");
+            }
+            catch (InvalidOperationException ex) when (ex.Message.Contains("already"))
+            {
+                StatusLabel.Text = "❌ " + ex.Message;
+                await DisplayAlert("Info", ex.Message, "OK");
+            }
+            catch (Exception ex)
+            {
+                StatusLabel.Text = "❌ Download failed";
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
         }
-        catch (Exception ex)
+        catch(Exception exOuter)
         {
-            await DisplayAlert("Error", ex.Message, "OK");
-            StatusLabel.Text = "❌ Download failed";
+            StatusLabel.Text = "❌ Unexpected error";
+            await DisplayAlert("Error", exOuter.Message, "OK");
         }
     }
+    
+        
     private static bool IsValidYoutubeUrl(string? url)
     {
         if (string.IsNullOrWhiteSpace(url))
