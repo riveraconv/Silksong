@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Silksong.Services;
 
 namespace Silksong
 {
@@ -14,6 +15,7 @@ namespace Silksong
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<ISharedLinkService, SharedLinkService>();
 
 #if DEBUG
     		builder.Logging.AddDebug();
