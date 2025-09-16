@@ -5,10 +5,22 @@ namespace Silksong;
 
 public partial class DownloadPage : ContentPage
 {
-	public DownloadPage()
+    private readonly ISharedLinkService _sharedLinkService;
+	public DownloadPage(ISharedLinkService sharedLinkService)
 	{
 		InitializeComponent();
+
+        _sharedLinkService = sharedLinkService;
+        _sharedLinkService.LinkReceived += OnLinkReceived;
 	}
+
+    private void OnLinkReceived(string url) //automatic inserts the url in the box 
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            UrlEntry.Text = url;
+        });
+    }
 
     private async void OnDownloadClicked(object sender, EventArgs e)
     {
