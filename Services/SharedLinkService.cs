@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Silksong.Services
 {
-    public class SharedLinkService :  ISharedLinkService
+    public class SharedLinkService : ISharedLinkService
     {
         public event Action<string>? LinkReceived;
 
-        public void ReceivedSharedLink(string url)
+        public void ReceiveSharedLink(string url)
         {
             if (string.IsNullOrWhiteSpace(url)) return;
 
