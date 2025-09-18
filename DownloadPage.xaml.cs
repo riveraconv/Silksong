@@ -1,17 +1,19 @@
-﻿using System.Text.RegularExpressions;
-using Silksong.Services;
+﻿using Silksong.Services;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Silksong;
 
 public partial class DownloadPage : ContentPage
 {
     private readonly ISharedLinkService _sharedLinkService;
-	public DownloadPage(ISharedLinkService sharedLinkService)
+	public DownloadPage(ISharedLinkService sharedLinkService, string? initialLink = null)
 	{
 		InitializeComponent();
-
         _sharedLinkService = sharedLinkService;
-        _sharedLinkService.LinkReceived += OnLinkReceived;
+
+        if(!string.IsNullOrWhiteSpace(initialLink))
+            UrlEntry.Text = initialLink;
 	}
 
     private void OnLinkReceived(string url) //automatic inserts the url in the box 
@@ -20,6 +22,16 @@ public partial class DownloadPage : ContentPage
         {
             UrlEntry.Text = url;
         });
+    }
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _sharedLinkService.Subscribe(OnLinkReceived);
+    }
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        _sharedLinkService.LinkReceived -= OnLinkReceived;
     }
 
     private async void OnDownloadClicked(object sender, EventArgs e)

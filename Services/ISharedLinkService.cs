@@ -10,5 +10,8 @@ namespace Silksong.Services
     {
         void ReceiveSharedLink(string url); //this method will be the method called.
         event Action<string>? LinkReceived; //this event allows to views to react when receiving a link.
+        void Subscribe(Action<string> callback);
+
+        string? ConsumePendingLink();
     }
 }
