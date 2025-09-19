@@ -45,3 +45,6 @@ Desktop.ini
 *.sqlite
 *.env
 *.local
+
+#Publicación (perfiles locales)
+Properties/PublishProfiles
