@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Silksong.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <!-- Imagen pendiente de cambios -->
+            <Image  
+                Source="portada_aplicacion.png"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                Margin="0,80,0,0"/>
+   
+            <!-- Titulo de la app -->
+            <Label
+                Text="Welcome to Silksong"
+                Style="{StaticResource Headline}"
+                HorizontalOptions="Center"
+                Margin="0,0,0,0"/>
+            
+            <!-- Descripcion -->
+            <Label
+                Text="Download your songs from videos fast and easy!"
+                Style="{StaticResource SubHeadline}"
+                HorizontalOptions="Center"
+                Margin="0,0,0,0"/>
+
+            <Button
+                x:Name="StartButton"
+                Text="GO TO DOWNLOAD!"
+                FontSize="14"
+                TextColor="White"
+                WidthRequest="150"
+                Clicked="OnStartClicked"
+                BackgroundColor="Red"
+                Margin="0,50,0,0"
+                Padding="0,0,0,0"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
