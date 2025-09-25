@@ -2,7 +2,7 @@ using Xunit;
 using Silksong.Services;
 
 
-namespace Silksong.Tests
+namespace Silksong.Tests.Services
 {
     public class SharedLinkServiceTest
     {

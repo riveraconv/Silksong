@@ -7,7 +7,7 @@ namespace Silksong.Services
 
     public static class YouTubeDownloader
     {
-        private static readonly string[] UserAgents =
+        public static readonly string[] UserAgents =
         [
 
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.124 Safari/537.36",
@@ -18,15 +18,17 @@ namespace Silksong.Services
             "Mozilla/5.0 (Linux; Android 10; IN2011) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.7339.124 Mobile Safari/537.36"
         ];
 
-        private static YoutubeClient CreateYoutubeClient() // To evade Youtube rejections, randomize a user-agent per request
+        public static HttpClient CreateHttpClient(string? forcedUserAgent = null)
         {
-            var random = new Random();
-            string userAgent = UserAgents[random.Next(UserAgents.Length)];
-
+            var userAgent = forcedUserAgent ?? UserAgents[new Random().Next(UserAgents.Length)];
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("User-Agent", userAgent);
+            return httpClient;
+        }
 
-            return new YoutubeClient(httpClient);
+        public static YoutubeClient CreateYoutubeClient(string? forcedUserAgent = null)
+        {
+            return new YoutubeClient(CreateHttpClient(forcedUserAgent));
         }
 
         public static async Task <string> DownloadAudioAsync(string videoId, IProgress<double>? progressHandler = null)
@@ -91,9 +93,9 @@ namespace Silksong.Services
             var youtube = CreateYoutubeClient();
             var video = await youtube.Videos.GetAsync(new VideoId(videoId));
 
-            //suponemos audio AAC 128 kbps (~16 KB/s)
+            //audio AAC 128 kbps (~16 KB/s)
             var durationSeconds = video.Duration?.TotalSeconds ?? 0;
-            double estimatedSizeMB = (durationSeconds * 16) / 1024; //mb aprox que ocupara la descarga
+            double estimatedSizeMB = (durationSeconds * 16) / 1024; //mb aprox
 
             return (video.Title, video.Duration ?? TimeSpan.Zero, estimatedSizeMB);
         }
