@@ -22,6 +22,13 @@
                 HorizontalOptions="Center"
                 Margin="0,0,0,0"/>
             
+            <!-- Actual Version -->
+            <Label
+                Text="{Binding AppVersion}"
+                FontSize="14"
+                HorizontalOptions="Center"
+                TextColor="Red" />
+            
             <!-- Descripcion -->
             <Label
                 Text="Download your songs from videos fast and easy!"
