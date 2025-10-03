@@ -39,6 +39,7 @@
 
 	</PropertyGroup>
 
+<<<<<<< HEAD
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
 	  <AndroidKeyStore>True</AndroidKeyStore>
 	</PropertyGroup>
@@ -47,12 +48,18 @@
 	  <AndroidKeyStore>True</AndroidKeyStore>
 	</PropertyGroup>
 
+=======
+>>>>>>> develop
 	<ItemGroup>
 		<!-- App Icon -->
 		<!--App Icon default MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" /> -->
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+<<<<<<< HEAD
 		<MauiIcon Include="Resources\AppIcon\myredicon.png" />
+=======
+		<MauiIcon Include="Resources\AppIcon\myredicon.png"/>
+>>>>>>> develop
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />

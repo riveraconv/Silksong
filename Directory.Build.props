@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup Condition="'$(IsTestProject)' == 'true'">
+    <!-- Evita que WindowsAppSDK se importe en los proyectos de tests -->
+    <EnableMsixPackaging>false</EnableMsixPackaging>
+    <WindowsAppSDKIsPackaged>false</WindowsAppSDKIsPackaged>
+  </PropertyGroup>
+</Project>
