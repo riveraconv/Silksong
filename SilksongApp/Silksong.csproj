@@ -41,12 +41,22 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
 	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidSigningStorePass>endeavour</AndroidSigningStorePass>
+	  <AndroidSigningKeyAlias>endeavour</AndroidSigningKeyAlias>
+	  <AndroidSigningKeyPass>endeavour</AndroidSigningKeyPass>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<AndroidKeyStore>true</AndroidKeyStore>
+		<AndroidSigningKeyStore>C:\Users\river\Desktop\Keystores\myredappstore.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>endeavour</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>endeavour</AndroidSigningKeyPass>
+		<AndroidSigningStorePass>endeavour</AndroidSigningStorePass>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
-	  <AndroidKeyStore>True</AndroidKeyStore>
+	  <AndroidPackageFormat>apk</AndroidPackageFormat>
 	</PropertyGroup>
-
 
 	<ItemGroup>
 		<!-- App Icon -->
