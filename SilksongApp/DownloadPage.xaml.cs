@@ -85,6 +85,7 @@ public partial class DownloadPage : ContentPage
             //calling download path, using Task.Run to liberate UI thread and don't getting NetworkOnMainException
             try
             {
+                var platform = DeviceInfo.Platform.ToString();
                 string filePath = await Task.Run(() =>
                     YouTubeDownloader.DownloadAudioAsync(videoId, progressHandler)
                 );
