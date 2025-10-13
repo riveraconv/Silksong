@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Silksong.DisclaimerPage">
+
+    <VerticalStackLayout Spacing="30" Padding="30">
+        <Label Text="⚠️ Legal Disclaimer" HorizontalOptions="Center" FontAttributes="Bold" FontSize="20" Padding="50"/>
+        <Label Text="This application is for personal and educational purposes only." Padding="5"/>
+        <Label Text="You are responsible for respecting copyright and the terms of service of YouTube." Padding="5"/>
+        <Label Text="Do not use this app to distribute or monetize copyrighted material without permission." Padding="5"/>
+        <Label Text="Silksong Downloader does not host or store any media content." Padding="5"/>
+        <Label Text="Enjoy the application responsibily." HorizontalOptions="Center" Padding="50"/>
+    </VerticalStackLayout>
+</ContentPage>

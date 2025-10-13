@@ -27,5 +27,14 @@ namespace Silksong
 
             await Navigation.PushAsync(new DownloadPage(service));
         }
+
+        private async void OnDisclaimerClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DisclaimerPage());
+        }
+        private async void OnInstructionsClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new InstructionsPage());
+        }
     }
 }

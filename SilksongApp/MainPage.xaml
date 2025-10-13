@@ -46,7 +46,20 @@
                 BackgroundColor="Red"
                 Margin="0,50,0,0"
                 Padding="0,0,0,0"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill">
+                <Button.Shadow>
+                <Shadow x:Name="ButtonShadow"
+                            Brush="DarkRed"
+                            Radius="20"
+                            Opacity="0.7"/>
+                </Button.Shadow>
+            </Button>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20,0,0" Spacing="20">
+                <Button Text="⚖️ Disclaimer" Clicked="OnDisclaimerClicked" FontSize="12" TextColor= "White" BackgroundColor="Transparent"/>
+                <Button Text="ℹ️ Instructions" Clicked="OnInstructionsClicked" FontSize="12" TextColor= "White" BackgroundColor="Transparent"/>
+            </StackLayout>
+            
         </VerticalStackLayout>
     </ScrollView>
 

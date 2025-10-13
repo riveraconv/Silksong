@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Silksong.InstructionsPage">
+
+        <VerticalStackLayout Spacing="12" Padding="15">
+            <Label Text="🎵 How to use Silksong Downloader" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" Padding="5" Margin="10,10,0,0"/>
+        <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto,Auto,Auto" Padding="20" RowSpacing="8">
+            <Label Grid.Row="0" Grid.Column="0" Text="1.- "/>
+            <Label Grid.Row="0" Grid.Column="1" Text="Copy a YouTube video link and paste it in the box. On Android just use the 'Share button'."/>
+            <Label Grid.Row="1" Grid.Column="0" Text="2.- "/>
+            <Label Grid.Row="1" Grid.Column="1" Text="Press 'Download' and wait for the confirmation. You will see a brief of the file."/>
+            <Label Grid.Row="2" Grid.Column="0" Text="3.- "/>
+            <Label Grid.Row="2" Grid.Column="1" Text="The audio will be saved in your Downloads folder under 'SilksongDownloads'."/>
+        </Grid>
+            <Label Text="💡 Tips and Notes" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center" Padding="20"/>
+        <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" Padding="20" RowSpacing="8">
+            <Label Grid.Row="0" Grid.Column="0" Text="- "/>
+            <Label Grid.Row="0" Grid.Column="1" Text="If the same song already exists, you will notified."/>
+            <Label Grid.Row="1" Grid.Column="0" Text="- "/>
+            <Label Grid.Row="1" Grid.Column="1" Text="Sometimes, YouTube can reject your petitions. Be patient and try to not spam it."/>
+            <Label Grid.Row="2" Grid.Column="0" Text="- "/>
+            <Label Grid.Row="2" Grid.Column="1" Text="This is an educational app! Not for piracy!"/>
+            <Label Grid.Row="3" Grid.Column="0" Text="- "/>
+            <Label Grid.Row="3" Grid.Column="1" Text="In case you remove the original folder by accident, don't worry, the app will turn to create it."/>
+        </Grid>
+    </VerticalStackLayout>
+
+</ContentPage>

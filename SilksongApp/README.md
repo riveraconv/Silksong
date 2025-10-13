@@ -16,7 +16,7 @@ Silksong is a learning project built to demonstrate downloading audio streams fr
 **Usage:**  
 1. Enter a valid YouTube URL.  
 2. Review video information and confirm the download.  
-3. The audio file will be saved in the standard Music folder (`SilksongDownloads` folder).  
+3. The audio file will be saved in the standard downloads folder (`SilksongDownloads` folder).  
 
 **License:**  
 This project is provided as-is for **educational purposes**. No commercial use is allowed without permission.
